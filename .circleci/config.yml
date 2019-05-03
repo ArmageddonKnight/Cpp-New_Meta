@@ -1,0 +1,11 @@
+version: 2.0
+
+jobs:
+    build:
+        docker:
+            - image: armageddonknight/cpp-new_meta:latest
+        steps:
+            - checkout
+            - run: 
+                name: Build and Test All Exercises
+                command: make all test
