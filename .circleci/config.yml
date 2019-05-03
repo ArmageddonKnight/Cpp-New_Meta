@@ -8,4 +8,6 @@ jobs:
             - checkout
             - run: 
                 name: Build and Test All Exercises
-                command: make all test
+                command: |
+                    mkdir build && cd build 
+                    make all test
