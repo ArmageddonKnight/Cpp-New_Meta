@@ -68,11 +68,14 @@ struct replace_type < _ArgC [N], _ArgA, _ArgB >
                 _ArgB,
                 replace_type_t < _ArgC, _ArgA, _ArgB > 
         > type [N];
-};
+}; // Partial Specialization - Array
 
 template < typename _ArgC, typename _ArgA, typename _ArgB, typename ..._VArg >
 struct replace_type < _ArgC (*)(_VArg...), _ArgA, _ArgB >
 {
-        typedef replace_type_t < _ArgC, _ArgA, _ArgB > (*type)(
-                replace_type_t < _VArg, _ArgA, _ArgB > ...); 
-};
+        typedef boost::conditional_t <
+                boost::is_same < _ArgC (*)(_VArg...), _ArgA > ::value,
+                _ArgB,
+                replace_type_t < _ArgC, _ArgA, _ArgB > 
+        > (*type)(replace_type_t < _VArg, _ArgA, _ArgB > ...); 
+}; // Partial Specialization - Function Pointer
