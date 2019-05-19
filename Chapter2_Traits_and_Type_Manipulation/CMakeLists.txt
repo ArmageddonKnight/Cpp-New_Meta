@@ -1,2 +1,2 @@
-add_subdirectory(Exercise_0)
-add_subdirectory(Exercise_1)
+include(${CMAKE_SOURCE_DIR}/addExerciseTest.cmake)
+add_all_exercises()

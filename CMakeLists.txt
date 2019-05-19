@@ -10,4 +10,7 @@ enable_testing()
 ADD_DEFINITIONS(-DBOOST_TEST_DYN_LINK)
 find_package(Boost COMPONENTS unit_test_framework REQUIRED)
 
-add_subdirectory(Chapter2_Traits_and_Type_Manipulation)
+file(GLOB CHAPTERS Chapter*)
+foreach(chapter ${CHAPTERS})
+        add_subdirectory(${chapter})
+endforeach()
